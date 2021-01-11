@@ -483,8 +483,26 @@ small,
 .small {
   font-size: 85%;
 }
+
 cite {
   font-style: normal;
+}
+.input[type="submit"]:hover {
+  background: #7277d5;
+}
+.input[type="submit"] {
+  background: #e7663f;
+  color: #FFF;
+  font-size: 1.2em;
+  padding: 0.6em 2em;
+  transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  display: inline-block;
+  text-transform: uppercase;
+  border: none;
+  outline: none;
 }
 .text-left {
   text-align: left;
