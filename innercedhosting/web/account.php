@@ -147,7 +147,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             var regMobile=/^(0)?[1-9]{1}[0-9]{9}$/;
             var regEmail=/^[a-zA-Z0-9.-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/;
             if (name=="" || email=="" || mobile=="" || security_question=="" || answer=="" || password=="" || repassword=="") {
-                alert("all fields are mandatory including security question and answer kindly choose one question and answer that!");
+                alert("All fields are mandatory including security question and answer kindly choose one question and answer that!");
                 return false;
             }
             else if (!(name.match(regName))){
