@@ -15,8 +15,8 @@
 						<div class="navbar-brand">
 
 							<h1>
-								<span style="color:#e7663f">CED<em><span style="color: #585CA7;">HOSTING</span>
-								</span></em>
+							<strong>	<span style="color:#e7663f">CED<em><span style="color: #585CA7;">HOSTING</span>
+								</span></em></strong>
 							</h1>
 						</div>
 					</div>
@@ -38,8 +38,7 @@
 									<li><a href="windowshosting.php">windows hosting</a></li>
 									<li><a href="linuxhosting.php">Linux Hosting</a></li>
 									<li><a href="catpage.php?id=44">Unix1.0</a></li>
-									<li><a href="catpage.php?id=46">bghdfhgfd</a></li>
-									<li><a href="catpage.php?id=47">bvgcb</a></li>
+								
 								</ul>
 							</li>
 							<li class=><a href="pricing.php">Pricing</a></li>

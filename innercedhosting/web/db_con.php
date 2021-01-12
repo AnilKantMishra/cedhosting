@@ -1,22 +1,24 @@
 <?php
-class db_con
- {
-    public $dcn;
-        function __construct()
-        {
-            $con = mysqli_connect("localhost","root","","CedHosting");
-
-            $this->dcn = $con;
-
-            if(mysqli_connect_errno()){
-                echo "failed to connect database" .mysqli_connect_errno();
-            }
-            else{
-                echo "Successfully Connected";
-            }
-
+class db_con{
+    public $conn;
+    public $servername;
+    public $username;
+    public $password;
+    public $dbname;
+    public function __construct(){
+        $this->servername="localhost";
+        $this->username="root";
+        $this->password="";
+        $this->dbname="CedHosting";
+    }
+    public function createConnection(){
+        $this->conn=new mysqli($this->servername,$this->username,$this->password,$this->dbname);
+        if ($this->conn){
+            return $this->conn;
         }
+        else {
+            return "connection error";
+        }
+    }
 }
-$obj =  new db_con();
-
 ?>

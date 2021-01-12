@@ -1,10 +1,24 @@
-<!--
-Au<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<?php
+
+include_once 'user.php';
+if(isset($_POST['submit'])){
+    $email = $_POST['email'];
+    $name = $_POST['name'];
+    $mobile = $_POST['mobile'];
+    $security_question = $_POST['security_question'];
+    $security_answer = $_POST['security_answer'];
+    $password = $_POST['password'];
+
+$userinsert = new user();
+$userinsert->userSignup($name, $email, $mobile, $security_question, $security_answer, $password);
+
+
+echo "<script>alert('Successfully logined')</script>";
+// echo "<script>window.location.href='login.php' </script>";
+}
+?>
+
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -53,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="main-1">
         <div class="container">
             <div class="register">
-                <form action="account.php" method="post" onsubmit="return(validateForm());"> 
+                <form action="" method="POST" onsubmit="return(validation());"> 
                     <div class="register-top-grid">
                     <h3>personal information</h3>
                         <h5 class="error-msg">* mandatory fields</h5>
@@ -67,7 +81,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                         <div>
                             <span>Security Question<label>*</label></span>
-                            <select id="security-question" name="securityquestion"> 
+                            <select id="security-question" name="security_question"> 
                                 <option value="Please select security question">Please select security question</option>
                                 <option value="What was your childhood nickname?">What was your childhood nickname?</option>
                                 <option value="What is the name of your favourite childhood friend?">What is the name of your favourite childhood friend?</option>
@@ -83,7 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                         <div id="answer-signup">
                             <span>ANSWER<label>*</label></span>
-                            <input type="text" name="answer" id="answer"> 
+                            <input type="text" name="security_answer" id="answer"> 
                         </div>
                         <div class="clearfix"> </div>
                         <a class="news-letter" href="#">
@@ -104,7 +118,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                 <div class="clearfix"> </div>
                 <div class="register-but">
-				<input type="submit" value="submit" name="submit">
+				<input type="submit" id="signup" value="submit" name="submit">
                         <div>
 
 						
@@ -120,7 +134,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 
 
-			<script>
+	<script>
         $('#security-question').click(function(){
             var value=$(this).val();
             if (value!="Please select security question")
@@ -134,7 +148,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         $('#password').focus(function(){
             $('#error-password').show().fadeOut(7000);
         });
-        function validateForm(){
+        function validation(){
             var name=($('#name').val()).trim();
             var email=($('#email').val()).trim();
             var mobile=($('#mobile').val()).trim();
@@ -176,6 +190,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             }
             return true;
         }
+
+        $("signup").click(function(){
+
+        })
     </script>
 <!-- login -->
 <?php include 'footer.php';?>
