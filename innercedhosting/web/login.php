@@ -1,15 +1,14 @@
 <?php
 
-include 'user.php';
+include 'user.php';?><?php
 if(isset($_POST['login'])){
     $email = $_POST['email'];
-    $password = $_POST['password'];
-        }
+	$password = $_POST['password'];
 
+     
 $userlogin = new user();
-// $userlogin->login($email,$password);
-
-
+$userlogin->login($email,$password);
+}
 
 ?>
 
@@ -57,7 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="col-md-6 login-right">
 									<h3>registered</h3>
 									<p>If you have an account with us, please log in.</p>
-									<form>
+									<form method="post" action="">
 									  <div>
 										<span>Email Address<label>*</label></span>
 										<input type="text" name="email"> 

@@ -32,13 +32,23 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
 									aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
 								<ul class="dropdown-menu">
-									<li><a href="cmshosting.php">CMS Hosting</a></li>
+								<?php
+								 $con = mysqli_connect("localhost", "root", "", "CedHosting");
+								$sql="SELECT prod_name  FROM tbl_product WHERE prod_parent_id ='1' AND prod_available ='1'";
+									$results=mysqli_query($con, $sql);
+								
+									foreach ($results as $prod){
+								?>
+									
+										<li><a href="#"><?php echo $prod['prod_name'];?></a></li>
+								<?php
+									}
+                ?><!-- <li><a href="cmshosting.php">CMS Hosting</a></li>
 									<li><a href="wordpresshosting.php">WordPress Hosting</a></li>
 									<li><a href="catpage.php?id=26">Mac Hosting</a></li>
 									<li><a href="windowshosting.php">windows hosting</a></li>
-									<li><a href="linuxhosting.php">Linux Hosting</a></li>
-									<li><a href="catpage.php?id=44">Unix1.0</a></li>
-								
+									<li><a href="linuxhosting.php">Linux Hosting</a></li> -->
+							
 								</ul>
 							</li>
 							<li class=><a href="pricing.php">Pricing</a></li>

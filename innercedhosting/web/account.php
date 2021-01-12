@@ -14,7 +14,7 @@ $userinsert->userSignup($name, $email, $mobile, $security_question, $security_an
 
 
 echo "<script>alert('Successfully logined')</script>";
-// echo "<script>window.location.href='login.php' </script>";
+echo "<script>window.location.href='login.php' </script>";
 }
 ?>
 
