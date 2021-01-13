@@ -34,13 +34,14 @@
 								<ul class="dropdown-menu">
 								<?php
 								 $con = mysqli_connect("localhost", "root", "", "CedHosting");
-								$sql="SELECT prod_name  FROM tbl_product WHERE prod_parent_id ='1' AND prod_available ='1'";
+								$sql="SELECT  `prod_name`,`prod_link` FROM `tbl_product` WHERE prod_parent_id ='1' AND prod_available ='1'";
 									$results=mysqli_query($con, $sql);
 								
 									foreach ($results as $prod){
 								?>
 									
-										<li><a href="#"><?php echo $prod['prod_name'];?></a></li>
+										<li><a href="<?php echo $prod['prod_name'] ;?>"><?php
+										echo $prod['prod_link'] ;?></a></li>
 								<?php
 									}
                 ?><!-- <li><a href="cmshosting.php">CMS Hosting</a></li>
