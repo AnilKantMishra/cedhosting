@@ -24,6 +24,17 @@ class product{
        }
     }
    
+    public function cat($category,$link)
+    {
+            $crore = "INSERT INTO tbl_product( prod_parent_id,
+             prod_name, prod_available, prod_link)
+            VALUES ('1','$category','1','$link')";
+
+            $re = $this->conprod->query($crore);
+
+            
+
+     }
 
 
 

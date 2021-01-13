@@ -33,7 +33,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--script-->
 </head>
 <body>
-<?php include 'navbar.php';?>
+<?php include 'header.php';?>
 		<!---singleblog--->
 				<div class="content">
 					<div class="setting-section">
