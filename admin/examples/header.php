@@ -16,7 +16,7 @@
           <!-- Nav items -->
           <ul class="navbar-nav" >
             <li class="nav-item">
-              <a class="nav-link active" href="index.php">
+              <a class="nav-link active" href="dashboard.php">
                 <i class="ni ni-tv-2 text-primary"></i>
                 Dashboard
               </a>
