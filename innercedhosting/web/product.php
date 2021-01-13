@@ -6,6 +6,7 @@ class product{
 
     public function __construct()
     {
+
     $dbcon=new db_con();
     $this->conprod=$dbcon->createConnection();
 
@@ -14,8 +15,13 @@ class product{
     public function nav()
     {
         $sql="SELECT  `prod_name`,`prod_link` FROM `tbl_product` WHERE prod_parent_id ='1' AND prod_available ='1'";
-        $result = $this->conprod->query($sql);
 
+        $result = $this->conprod->query($sql);
+       if($result->num_rows>0){
+           return $result;
+       }else{
+           return false;
+       }
     }
    
 
@@ -32,4 +38,3 @@ class product{
 
 
 
-?>

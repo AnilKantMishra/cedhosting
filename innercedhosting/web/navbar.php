@@ -33,18 +33,24 @@
 									aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
 								<ul class="dropdown-menu">
 								<?php
-								 $con = mysqli_connect("localhost", "root", "", "CedHosting");
-								$sql="SELECT  `prod_name`,`prod_link` FROM `tbl_product` WHERE prod_parent_id ='1' AND prod_available ='1'";
-									$results=mysqli_query($con, $sql);
-								
-									foreach ($results as $prod){
-								?>
-									
-										<li><a href="<?php echo $prod['prod_name'] ;?>"><?php
-										echo $prod['prod_link'] ;?></a></li>
-								<?php
-									}
-                ?><!-- <li><a href="cmshosting.php">CMS Hosting</a></li>
+								include 'product.php';
+											$navobj = new product();
+											$res = $navobj->nav();
+											$row = $res->num_rows;
+											for($i=0;$i<$row;$i++){
+												   $resultobj = $res->fetch_assoc();
+												   ?>
+				<li>   <a href="<?php echo $resultobj['prod_link'];?>"> <?php  echo $resultobj['prod_name'];
+				?></a></li>
+												 
+<?php
+											}
+
+
+
+															
+											?>
+				<!-- <li><a href="cmshosting.php">CMS Hosting</a></li>
 									<li><a href="wordpresshosting.php">WordPress Hosting</a></li>
 									<li><a href="catpage.php?id=26">Mac Hosting</a></li>
 									<li><a href="windowshosting.php">windows hosting</a></li>
