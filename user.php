@@ -2,8 +2,17 @@
 <?php
 class user
 {
-
-                    public $con;
+    public $email;
+    public $name;
+    public $mobile;
+    public $email_approved;
+    public $phone_approved;
+    public $active;
+    public $is_admin;
+    public $password;
+    public $security_answer;
+    public $security_question;
+    public $con;
 
                     public function __construct()
                     {

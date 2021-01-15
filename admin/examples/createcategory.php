@@ -1,18 +1,25 @@
 <?php
 
-include '../../product.php';
+
 
 if(isset($_POST['submit']))
 {
-
+  include_once '../../product.php';
 $category = $_POST['category'];
 $link = $_POST['link'];
  
+// echo "<script>alert('$category')</script>";
+// echo "<script>alert('$link')</script>";
 
 $createcat = new product();
-$createcat->cat($category,$link);
+$createcat->category($category,$link);
+if($createcat==true){
+echo "<script>alert('Subcategory Added successfully')</script>";}
+else{
+  echo "<script>alert('failed to Add Subcategory ')</script>";
+}
 
-echo "<script>window.location.href='dashboard.php'</script>";
+echo "<script>window.location.href='createcategory.php'</script>";
 
 }
 
@@ -26,7 +33,11 @@ echo "<script>window.location.href='dashboard.php'</script>";
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-  <meta name="author" content="Createxamplesboard for Bootstrap 4</title>
+  <meta name="author" content="Createxamplesboard for Bootstrap 4">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css"/>
+
+
 
   <link rel="icon" href="../assets/img/brand/favicon.png" type="image/png">
   <!-- Fonts -->
@@ -36,7 +47,15 @@ echo "<script>window.location.href='dashboard.php'</script>";
   <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Page plugins -->
   <!-- Argon CSS -->
-  
+  <style>input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+ </style>
   <link rel="stylesheet" href="../assets/css/argon.css?v=1.2.0" type="text/css">
   <script src="https://cdn.tiny.cloud/1/8fhdd8d5a1jion5okusw7qlr99rufwtsp8lyyi5kqyxom5nw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
@@ -129,7 +148,9 @@ echo "<script>window.location.href='dashboard.php'</script>";
                         <p class="text-sm mb-0">A new issue has been reported for Argon.</p>
                       </div>
                     </div>
+
                   </a>
+
                   <a href="#!" class="list-group-item list-group-item-action">
                     <div class="row align-items-center">
                       <div class="col-auto">
@@ -191,7 +212,9 @@ echo "<script>window.location.href='dashboard.php'</script>";
                 <!-- View all -->
                 <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
               </div>
+
             </li>
+
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="ni ni-ungroup"></i>
@@ -238,6 +261,7 @@ echo "<script>window.location.href='dashboard.php'</script>";
               </div>
             </li>
           </ul>
+
           <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
             <li class="nav-item dropdown">
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -291,7 +315,7 @@ echo "<script>window.location.href='dashboard.php'</script>";
               <h6 class="h2 text-white d-inline-block mb-0">Create Category</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                  <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item"><a href="dashboard.php"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="#">Products</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Create Category</li>
                 </ol>
@@ -343,7 +367,7 @@ echo "<script>window.location.href='dashboard.php'</script>";
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-external-link-alt"></i></span>
                     </div>
-                    <textarea name="link" placeholder="Add Your Link Here" cols="42" rows="5"></textarea>
+                    <textarea name="link" placeholder="Add Your Link Here" cols="42" rows="5"> </textarea>
                 <script>
                   tinymce.init({
                     selector: 'textarea',
@@ -376,10 +400,87 @@ echo "<script>window.location.href='dashboard.php'</script>";
         </div>
       </div>
     </div>
+ <!-- Page content -->
+    
+ <h1 style="text-align: center;"> </h1>
+<br>
+<table id="table" width="100%" class="table table-bordered display responsive">
+<thead style="background-color: #1a0000; color:white ;font-weight:bold;">
+
+<tr>
+<th>CATEGORY PARENT NAME</th>
+<th>CATEGORY NAME</th>
+ <th>HTML</th>
+ <th>AVAILABILITY</th> 
+<th>LAUNCH DATE</th>
+
+ <th>EDIT</th> 
+ <th>DELETE</th>  
+
+
+</tr>
+</thead>
+<tbody>
+
+<?php
+
+include_once '../../product.php';
+$objectshow = new product();
+$show = $objectshow->showcat();
+
+
+while($s=mysqli_fetch_assoc($show)){
+?>
+<tr>
+<td><?php echo 'Hosting';?></td>
+<td><?php echo $s['prod_name'];?></td>
+<td><?php echo $s['html'];?></td>
+<td><?php echo $s['prod_available'];?></td>
+<td><?php echo $s['prod_launch_date'];?></td>
+<td>
+    <a style="text-decoration: none; " href="editcreatecategory.php?id=<?php echo $s['id'];?>"><button class="btn btn-danger" >EDIT</button></a></td>
+<td><a style="text-decoration: none;"  onclick="return confirm('Do you really want to delete?')"  href="cancelride.php?ride_id=<?php echo $s['ride_id'];?>"> <button class="btn btn-success" >DELETE</button>
+
+</a></td>
+</tr>
+
+<?php
+
+}
+
+
+?>
+
+</tbody>
+</table>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src= "https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+
+<script>
+$('a.delete').on('click', function() {
+    var select = confirm('Do you really want to delete?');
+    if(select === true) {
+        return true;
+    }
+    return false;
+});
+
+  $('#table').dataTable( {
+  "scrollX": true,
+ 
+  "paging": true
+} );
+
+</script>
+
+    
       <!-- Footer -->
+
      <?php  include 'footer.php' ;?>
     </div>
   </div>
+
   <!-- Argon Scripts -->
   <!-- Core -->
   <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
@@ -387,8 +488,10 @@ echo "<script>window.location.href='dashboard.php'</script>";
   <script src="../assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+
   <!-- Optional JS -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"> </script>
   <!-- Argon JS -->
   <script src="../assets/js/argon.js?v=1.2.0"></script>
 </body>

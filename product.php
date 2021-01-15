@@ -1,6 +1,6 @@
 
 <?php include_once 'db_con.php'; 
-class product{
+class product extends db_con{
 
     public $conprod;
 
@@ -11,10 +11,9 @@ class product{
     $this->conprod=$dbcon->createConnection();
 
     }
-
     public function nav()
     {
-        $sql="SELECT  `prod_name`,`prod_link` FROM `tbl_product` WHERE prod_parent_id ='1' AND prod_available ='1'";
+        $sql="SELECT  * FROM `tbl_product` WHERE prod_parent_id ='1' AND prod_available ='1'";
 
         $result = $this->conprod->query($sql);
        if($result->num_rows>0){
@@ -22,20 +21,91 @@ class product{
        }else{
            return false;
        }
-    }
-   
-    public function cat($category,$link)
+    }  
+    public function category($category,$link)
     {
-            $crore = "INSERT INTO tbl_product( prod_parent_id,
-             prod_name, prod_available, prod_link)
+            $insertcategoryhere = "INSERT INTO tbl_product( prod_parent_id,
+             prod_name, prod_available, html)
             VALUES ('1','$category','1','$link')";
-
-            $re = $this->conprod->query($crore);
+           
+            if ($this->conprod->query($insertcategoryhere)) {
+              echo "<script>alert('Inserted successfully'</script>";
+              }
+              else{
+                echo "<script>alert('not Inserted successfully'</script>";
+              }
 
             
-
      }
 
+     public function datatableshow()
+     {
+         $sql="SELECT  `prod_name`,`prod_link` ,`prod_parent_id`,`prod_available` FROM `tbl_product` WHERE prod_parent_id ='1' AND prod_available ='1'";
+ 
+         $result = $this->conprod->query($sql);
+        if($result->num_rows>0){
+            return $result;
+        }else{
+            return false;
+        }
+     }
+     public function addproduct($selectproduct,$product,$discription,
+     $monthlyprice,$annualprice,$sku)
+     {
+        $insertprod = "INSERT INTO `tbl_product_description`(`prod_id`, 
+        `description`, `mon_price`, `annual_price`, `sku`) 
+        VALUES ('$selectproduct','$discription','$monthlyprice','$annualprice','$sku')";
+
+       $insertprod = $this->conprod->query($insertprod);
+
+     $insertagain =  "INSERT INTO `tbl_product`( `prod_parent_id`, `prod_name`, `prod_available`, `prod_launch_date`, `html`) 
+       VALUES ('$selectproduct','$product','1',NOW(),'$discription')";
+       $insertagain = $this->conprod->query($insertagain);
+     }
+
+    public function jsonsselectdisc($webspacein,$bandwidthin,$freedomain,$language,$mailbox,$pageurl) { 
+        $datae = array( 
+          'webspacein'=> $webspacein ,
+          'bandwidthin'=> $bandwidthin,
+          'freedomain'=> $freedomain,
+          'language'=> $language,
+          'mailbox' => $mailbox,
+          'pageurl' => $pageurl,); 
+          return json_encode($datae); 
+          $name = "jsondata"; 
+          $file_name = $name . '.json'; 
+          echo $file_name;
+      
+      } 
+
+      public function showcat(){
+        $sql = "SELECT * FROM tbl_product where prod_available = 1 AND prod_parent_id=1";
+
+      $show= $this->conprod->query($sql);
+      if($show->num_rows>0){
+        
+        return $show;
+
+    }
+    else{
+        return false;
+    }
+      }
+
+
+      public function viewcat(){
+        $sql = "SELECT * FROM tbl_product where prod_available = 1 AND prod_parent_id=1";
+
+      $show= $this->conprod->query($sql);
+      if($show->num_rows>0){
+        
+        return $show;
+
+    }
+    else{
+        return false;
+    }
+      }
 
 
 }

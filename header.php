@@ -40,7 +40,7 @@
 											for($i=0;$i<$row;$i++){
 												   $resultobj = $res->fetch_assoc();
 												   ?>
-				<li>   <a href="<?php echo $resultobj['prod_link'];?>"> <?php  echo $resultobj['prod_name'];
+				<li>   <a href="<?php echo $resultobj['id'];?>"> <?php  echo $resultobj['prod_name'];
 				?></a></li>
 												 
 <?php

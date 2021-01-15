@@ -59,11 +59,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<form method="post" action="">
 									  <div>
 										<span>Email Address<label>*</label></span>
-										<input type="text" name="email"> 
+										<input type="text" name="email" required> 
 									  </div>
 									  <div>
 										<span>Password<label>*</label></span>
-										<input type="password"name="password"> 
+										<input type="password"name="password" required> 
 									  </div>
 									  <a class="forgot" href="#">Forgot Your Password?</a>
 									  <input type="submit" value="Login" name="login">
