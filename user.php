@@ -47,12 +47,13 @@ class user
               
             
             if( $row['is_admin']=='1')
-            {
+            { 
                 echo "<script>window.location.href='admin/examples/dashboard.php'</script>";
            
             }
             elseif(( $row['is_admin']=='0')){
                 echo "<script>alert('user')</script>";
+                // echo "<script>window.location.href='user/index.php'</script>";
             }
             else{
                 echo "<script>alert('User is not registered')</script>";

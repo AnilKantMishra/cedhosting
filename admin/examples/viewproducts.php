@@ -1,8 +1,3 @@
-<?php
-
-
-
-?>
 
 
 <!DOCTYPE html>
@@ -342,18 +337,29 @@ input[type=number]::-webkit-outer-spin-button {
 
 include_once '../../product.php';
 $objectshow = new product();
+//  echo $description= var_dump(json_decode($discription));
+//     echo "<script> alert('$description') </script>";
 $show = $objectshow->viewcat();
 
 
 while($s=mysqli_fetch_assoc($show)){
 ?>
 <tr>
-<td><?php echo 'Hosting';?></td>
+<td><?php echo 'hosting';?></td>
 <td><?php echo $s['prod_name'];?></td>
 <td><?php echo $s['html'];?></td>
 <td><?php echo $s['prod_available'];?></td>
 <td><?php echo $s['prod_launch_date'];?></td>
+<td><?php echo $s['mon_price'];?></td>
+<td><?php echo $s['annual_price'];?></td>
+<td><?php echo $s['sku'];?></td>
 
+<td><?php echo $s['webspacein'];?></td>
+<td><?php echo $s['bandwidthin'];?></td>
+<td><?php echo $s['freedomain'];?></td>
+<td><?php echo $s['language'];?></td>
+<td><?php echo $s['pageurl'];?></td>
+<td><?php echo $s['mailbox'];?></td>
 </tr>
 
 <?php

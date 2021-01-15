@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include 'user.php';?><?php
 if(isset($_POST['login'])){
     $email = $_POST['email'];
