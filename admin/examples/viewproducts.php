@@ -1,8 +1,5 @@
-
-
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,12 +9,13 @@
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css"/>
   <link rel="stylesheet" href="../assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <style>input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+  input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -299,96 +297,85 @@ input[type=number]::-webkit-outer-spin-button {
       </div>
     </div>
    
-<!-- Page content -->
-    
-<h1 style="text-align: center;"> </h1>
-<br>
-<div class="container">
-<table id="table" width="100%" class="table table-bordered display responsive">
-<thead style="background-color: #1a0000; color:white">
+<!-- table display -->
+<div class="row">
+        <div class="col-xl-12">
+          <div class="card">
+            <div class="table-responsive">
+              <!-- Projects table -->
 
-<tr>
-<th>PROD PARENT NAME</th>
-<th>PRODUCT NAME</th>
- <th>LINK</th>
- <th>AVAILABILITY</th> 
-<th>LAUNCH DATE</th>
+        <?php
 
-<th>MONTHLY PRICE</th>
-<th>ANNUAL PRICE</th>
- <th>SKU</th>
- <th>WEBSPACE</th> 
-<th>BAND WIDTH</th>
-<th>FREE DOMAIN</th>
- <th>LANGUAGE TECHNOLOGY</th> 
-<th>MAILBOX</th>
-<th>action</th>
-
-<!-- 
- <th>EDIT</th> 
- <th>DELETE</th>   -->
-
-
-</tr>
-</thead>
-<tbody>
-
-<?php
+        include_once '../../product.php';
+        $pr=new Product();
+        $va = $pr->decodejson();
+        ?>
+              <table class="table align-items-center table-flush" id="showProduct">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Product Parent Name</th>
+                        <th>Product Name</th>
+                        <th>HTML</th>
+                        <th>Product Availability</th>
+                        <th>Product Launch Date</th>
+                        <th>Monthly Price</th>
+                        <th>Annual price</th>
+                        <th>SKU</th>
+                        <th>Webspace</th>
+                        <th>Bandwidth</th>
+                        <th>Free Domain</th>
+                        <th>Language Technology</th>
+                        <th>MailBox</th>
+                        <th>LINK</th>                   
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <?php
 
 include_once '../../product.php';
-$objectshow = new product();
-//  echo $description= var_dump(json_decode($discription));
-//     echo "<script> alert('$description') </script>";
-$show = $objectshow->viewcat();
+$pr=new Product();
 
+$viewdat = $pr->viewcat();
 
-while($s=mysqli_fetch_assoc($show)){
-?>
-<tr>
-<td><?php echo 'hosting';?></td>
-<td><?php echo $s['prod_name'];?></td>
-<td><?php echo $s['html'];?></td>
-<td><?php echo $s['prod_available'];?></td>
-<td><?php echo $s['prod_launch_date'];?></td>
-<td><?php echo $s['mon_price'];?></td>
-<td><?php echo $s['annual_price'];?></td>
-<td><?php echo $s['sku'];?></td>
+while($viewdata=mysqli_fetch_assoc($viewdat)){
+  ?>
+  <tr>
+         <td><?php echo $viewdata ['prod_parent_id'] ;?> </td>
+        <td><?php echo  $viewdata ['prod_name'] ;?> </td>
+        <td><?php   echo  $viewdata ['html'] ; ?> </td>
+        <td><?php  echo  $viewdata ['prod_available']; ?> </td>
+        <td><?php    echo  $viewdata ['prod_launch_date']; ?> </td>
+        <td><?php echo  $viewdata ['mon_price']; ?> </td>
+        <td><?php  echo  $viewdata ['annual_price']; ?> </td>
+        <td><?php  echo  $viewdata ['sku']; ?> </td>
+        <td><?php echo $va->webspacein; ?> </td>
+        <td><?php echo $va->bandwidthin;?> </td>
+        <td><?php   echo $va->freedomain; ?> </td>
+        <td><?php  echo $va->language; ?> </td>
+        <td><?php      echo $va->mailbox; ?> </td>
+        <td><?php echo $va->pageurl;?> </td>
+   </tr>
 
-<td><?php echo $s['webspacein'];?></td>
-<td><?php echo $s['bandwidthin'];?></td>
-<td><?php echo $s['freedomain'];?></td>
-<td><?php echo $s['language'];?></td>
-<td><?php echo $s['pageurl'];?></td>
-<td><?php echo $s['mailbox'];?></td>
-</tr>
+      <?php
 
-<?php
-
-}
-
-
-?>
-
+      }
+      ?>
 </tbody>
 </table>
-  </div>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src= "https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 
-<script>
-
-
-  $('#table').dataTable( {
-  "scrollX": true,
-
-} );
-
-</script>
-
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- table display -->
 
       <!-- Footer -->
 
+      
      <?php  include 'footer.php' ;?>
     </div>
   </div>

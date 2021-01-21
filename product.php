@@ -11,9 +11,10 @@ class product {
     $this->conprod=$dbcon->createConnection();
 
     }
+
     public function nav()
     {
-        $sql="SELECT  * FROM `tbl_product` WHERE prod_parent_id ='1' AND prod_available ='1'";
+        $sql = "SELECT  * FROM `tbl_product` WHERE prod_parent_id ='1' AND prod_available ='1'";
 
         $result = $this->conprod->query($sql);
        if($result->num_rows>0){
@@ -34,14 +35,12 @@ class product {
               else{
                 echo "<script>alert('not Inserted successfully'</script>";
               }
-
-            
      }
 
      public function datatableshow()
      {
-         $sql="SELECT  `prod_name`,`prod_link` ,`prod_parent_id`,`prod_available` FROM `tbl_product` WHERE prod_parent_id ='1' AND prod_available ='1'";
- 
+        $sql="SELECT  `prod_name`,`prod_link` ,`prod_parent_id`,`prod_available` FROM `tbl_product` WHERE prod_parent_id ='1' AND prod_available ='1'";
+
          $result = $this->conprod->query($sql);
         if($result->num_rows>0){
             return $result;
@@ -49,6 +48,7 @@ class product {
             return false;
         }
      }
+
      public function addproduct($selectproduct,$product,$discription,
      $monthlyprice,$annualprice,$sku)
      {
@@ -72,12 +72,27 @@ class product {
           'mailbox' => $mailbox,
           'pageurl' => $pageurl,); 
           return json_encode($datae); 
-       
+
       } 
 
-      public function showcat(){
+      public function decodejson(){
+        $sql4 = "SELECT * from tbl_product_description";
+
+      $decoded =  $this->conprod->query($sql4);
+     
+      while($row = $decoded->fetch_assoc()){
       
-        $sql = "SELECT * FROM tbl_product where prod_available = 1 AND prod_parent_id=1";
+       $va= json_decode($row['description']);
+      //  echo "<pre>";
+        // print_r($va);
+
+        return $va;
+
+      }
+      }
+
+      public function showcat(){
+       $sql = "SELECT * FROM tbl_product where prod_available = 1 AND prod_parent_id=1";
 
       $show= $this->conprod->query($sql);
       if($show->num_rows>0){
@@ -88,20 +103,24 @@ class product {
     else{
         return false;
     }
+
+
       }
 
 
       public function viewcat(){
 
-
        $viewcategory = "SELECT `tbl_product`.*,`tbl_product_description`.* FROM tbl_product 
-       JOIN tbl_product_description ON `tbl_product`.`id` = `tbl_product_description`.`prod_id`  AND prod_parent_id!=0";
+       JOIN tbl_product_description ON `tbl_product`.`id` = `tbl_product_description`.`prod_id` ";
             
-      $viewcatego= $this->conprod->query($viewcategory);
-
-            return $viewcatego;
-   
-     
+      $viewcate= $this->conprod->query($viewcategory);
+      if($viewcate->num_rows>0){
+        return $viewcate;
+    }else{
+        return false;
+    }
+      
+          
       }
       public function editcat()
       {
@@ -124,7 +143,24 @@ class product {
         }
       }
 
+
+
+
+      public function cart()
+      {
+          $sql="SELECT  * FROM `tbl_product` WHERE prod_parent_id ='1' AND prod_available ='1'";
+  
+          $result = $this->conprod->query($sql);
+         if($result->num_rows>0){
+             return $result;
+         }else{
+             return false;
+         }
+      } 
+     
+
 }
+
 
 ?>
 

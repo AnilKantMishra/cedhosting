@@ -3,15 +3,12 @@ session_start();
 include 'user.php';?><?php
 if(isset($_POST['login'])){
     $email = $_POST['email'];
-	$password = $_POST['password'];
-
-     
+	$password = $_POST['password'];     
 $userlogin = new user();
 $userlogin->login($email,$password);
+
 }
-
 ?>
-
 <!DOCTYPE HTML>
 <html>
 <head>

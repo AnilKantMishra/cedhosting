@@ -1,3 +1,20 @@
+<?php
+session_start();
+
+$id = $_SESSION['id'];
+
+$name = $_SESSION['name'] ;
+
+echo $id;
+
+echo $name;
+
+
+?>
+
+
+
+
 
 <!DOCTYPE HTML>
 <html>
@@ -33,10 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!---blog--->
 		<?php include 'header.php';?>
 				<div class="content">
-					<?php
-					$id =  $_GET['id'];
-					echo $id;
-					?>
+					
                 
                     <!-------cart section goes here !--------->
 

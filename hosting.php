@@ -1,7 +1,12 @@
 <?php
-
+session_start();
 $id = $_GET['id'];
 $name = $_GET['name'];
+
+
+$_SESSION['id'] = $id;
+
+$_SESSION['name'] = $name;
 
 
 ?>
@@ -14,6 +19,7 @@ $name = $_GET['name'];
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <meta name="keywords" content="Planet Hosting Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -25,6 +31,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!---fonts-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!--script-->
+<style>
+	.btn{
+		margin-top:20px;
+		margin-bottom:20px;
+	}
+
+ </style>
 <script src="js/modernizr.custom.97074.js"></script>
 <script src="js/jquery.chocolat.js"></script>
 <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen">
@@ -60,8 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li><span>Launch  </span> your business with Rs. 2000* Google AdWords Credit *</li>
                     <li><span>30 day </span> Money Back Guarantee</li>
                 </ul>                </ul>
-				<a href="cart.php?id=<?php echo $resultobj['id'];?>&name=<?php echo $resultobj['prod_name'];?>"> Buy Now
-				</a>
+				<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Buy Now</button>
                 </div>
                 <div class="col-md-4 linux-grid1">
                     <img src="images/mac.png" class="img-responsive" alt=""/>                </div>
@@ -91,10 +103,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <li><strong>php </strong> Language/Technology</li>
                                         <li><strong>High Performance</strong>  Servers</li>
                                         <li><strong>location</strong> : <img src="images/india.png"></li>
-                                        </ul>
+										</ul>
+										<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Buy Now</button>
                                     </div>
-									<a href="cart.php?id=<?php echo $resultobj['id'];?>&name=<?php echo $resultobj['prod_name'];?>"> Buy Now
-				</a>
+									
                                 </div><div class="col-md-3 linux-price">
                                     <div class="linux-top">
                                     <h4>Standard</h4>
@@ -111,29 +123,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <li><strong>php,css,js </strong> Language/Technology</li>
                                         <li><strong>High Performance</strong>  Servers</li>
                                         <li><strong>location</strong> : <img src="images/india.png"></li>
-                                        </ul>
+										</ul>
+										<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Buy Now</button>
                                     </div>
-									<a href="cart.php?id=<?php echo $resultobj['id'];?>&name=<?php echo $resultobj['prod_name'];?>"> Buy Now</a>
+									
                                 </div><div class="col-md-3 linux-price">
-                                    <div class="linux-top">
-                                    <h4>Standard</h4>
-                                    </div>
-                                    <div class="linux-bottom">
-                                        <h5>₹500 <span class="month">per Month</span></h5>
-                                        <h5>₹2000 <span class="month">per Annum</span></h5>
-                                        <h6>Single Domain</h6>
-                                        <ul>
-                                        <li><strong>6GB </strong> Web Space</li>
-                                        <li><strong>89GB </strong>Bandwidth</li>
-                                        <li><strong>1 </strong> Mailbox</li>
-                                        <li><strong>0 </strong> Free Domain</li>
-                                        <li><strong>php,js </strong> Language/Technology</li>
-                                        <li><strong>High Performance</strong>  Servers</li>
-                                        <li><strong>location</strong> : <img src="images/india.png"></li>
-                                        </ul>
-                                    </div>
-									<a href="cart.php?id=<?php echo $resultobj['id'];?>&name=<?php echo $resultobj['prod_name'];?>"> <?php  echo $resultobj['prod_name'];
-				?></a>
+                                    
+									
+								
+								
+								</a>
                                 </div>                            <div class="clearfix"></div>
                         </div>
                     </div>
@@ -155,7 +154,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </ul>
     </div>
 </div>
-		<!--services--->
+				<!--services--->
 				<div class="content">
 					<div class="brilliant-section">
 						<div class="container">
@@ -227,10 +226,46 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="clearfix"></div>
 							</div>
 						</div>
+						
 					</div>
 
 		
 
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+	  <div class="container">
+
+<p style="font-size: 20px;">Select a Plan To Continue</p>
+  <div class="dropdown">
+  
+   
+    <select id="dropdownList"> <span class="caret"></span>
+  
+    <option value="monthly">Monthly</option>
+    <option value="annual">Annual</option>
+   
+</select> 
+  </div>
+</div>
+
+      </div>
+      <div class="modal-footer">
+	  <button type="button" class="btn btn btn-success " data-dismiss="modal">Cancel</button>
+	  <a href="checkoutform.php"><button type="button" class="btn btn-danger">Add To Cart</button></a>
+      </div>
+    </div>
+
+  </div>
+</div>
 					<!--services--->
 					<!---features--->
 					<div class="feature-section">
@@ -347,7 +382,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					<!---services-prices--->
 				</div>
-			
+			<script> 
+$('#mymodal').on('click', function() {
+	$('#myModal').modal('show')
+}); 
+
+$(document).ready(function(){
+    $('#dropdownList').on('change',function(){
+    
+        var optionText = $("#dropdownList option:selected").text();
+        alert(optionText);
+    });
+});
+						</script>
 			<?php include 'footer.php';?>
 			
 </body>
